@@ -28,15 +28,15 @@ format:
   script:
     - echo "static_analysis not implemented"
 
-test:
-  stage: test
+tests:
+  stage: tests
   script:
     - echo "unit test not implemented"
 
 deploy_stage:
   stage: deploy_stage
   dependencies:
-    - test
+    - tests
     - format
   script:
     - pip3 install Fabric3==1.13.1.post1
