@@ -37,7 +37,7 @@ deploy_stage:
     - pytest
     - flake8
   script:
-    - cd cool_app
+    - cd app
     - pip3 install Fabric3==1.13.1.post1
     - fab local deploy
   only:
