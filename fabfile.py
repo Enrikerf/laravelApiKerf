@@ -18,9 +18,13 @@ environments = {
         }
     },
     'stage': {
-        'hosts': 'enrikerf@2.tcp.ngrok.io',
-        'port': '15050',
-        'home': '~/workspace/laravelApiKerf',
+        'hosts': 'ec2-3-12-123-16.us-east-2.compute.amazonaws.com',
+        'port': '22',
+        'user'="ubuntu",
+        'connect_kwargs'={
+            "key_filename": "~/.ssh/kerf-1.pem",
+        },
+        'home': '~/home/ubuntu',
         'docker_build_commands': [],
         'docker_clean_commands': [],
         'git': {

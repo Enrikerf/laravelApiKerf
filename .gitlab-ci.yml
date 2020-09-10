@@ -10,6 +10,7 @@ before_script:
   - eval $(ssh-agent -s)
   # add ssh key stored in SSH_PRIVATE_KEY variable to the agent stores
   - echo "${LOCAL_SSH_PRIVATE_KEY}" | ssh-add -
+  - echo "${SSH_PRIVATE_KEY}" | ssh-add ~/.ssh/kerf-1.pem
   # disable host key checking (NOTE: makes you susceptible to man-in-the-middle attacks)
   # WARNING: use only in docker container, if you use it with shell you will overwrite your user's ssh config
   - mkdir -p ~/.ssh
@@ -38,7 +39,7 @@ deploy_stage:
     - flake8
   script:
     - pip3 install Fabric3==1.13.1.post1
-    - fab local deploy
+    - fab develop deploy
   only:
     - develop
 
