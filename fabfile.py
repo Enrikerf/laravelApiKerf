@@ -68,7 +68,7 @@ def local():
 
 def git_pull(sha1):
     with cd(environments['default']['home']):
-        run(f'ls -la')
+        run('ls -la')
         run(f'echo "{sha1}"')
         run('git pull %s %s' % (environments['default']['git']['parent'],
                                 environments['default']['git']['branch']))
