@@ -11,7 +11,7 @@ before_script:
   # add ssh key stored in SSH_PRIVATE_KEY variable to the agent stores
   - echo "${LOCAL_SSH_PRIVATE_KEY}" | ssh-add -
   - mkdir ~/.ssh
-  - cat "$LOCAL_SSH_PRIVATE_KEY" >> ~/.ssh/kerf-1.pem
+  - echo "$LOCAL_SSH_PRIVATE_KEY" >> ~/.ssh/kerf-1.pem
   - chmod 644 ~/.ssh/kerf-1.pem
   # disable host key checking (NOTE: makes you susceptible to man-in-the-middle attacks)
   # WARNING: use only in docker container, if you use it with shell you will overwrite your user's ssh config
