@@ -63,6 +63,7 @@ def local():
 
 def git_pull(sha1):
     with cd(environments['default']['home']):
+        run(f'ls -la')
         run(f'echo "{sha1}"')
         run('git pull %s %s' % (environments['default']['git']['parent'],
                                 environments['default']['git']['branch']))
@@ -82,6 +83,5 @@ def deploy():
     sha1 = os.environ.get('CI_COMMIT_SHA')
     print("SHA Commit", os.environ.get('CI_COMMIT_SHA'))
     print("SHA Commit", os.environ.get('CI_COMMIT_SHA'))
-    ls -la
     git_pull(sha1)
     docker_commands()
