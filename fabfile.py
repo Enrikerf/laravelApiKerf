@@ -9,7 +9,7 @@ environments = {
     'production': {
         'hosts': 'enrikerf@2.tcp.ngrok.io',
         'port': '15050',
-        'home': '~/workspace/clase_6_pipeline',
+        'home': '~/workspace/laravelApiKerf',
         'docker_build_commands': [],
         'docker_clean_commands': [],
         'git': {
@@ -20,7 +20,7 @@ environments = {
     'stage': {
         'hosts': 'enrikerf@2.tcp.ngrok.io',
         'port': '15050',
-        'home': '~/workspace/clase_6_pipeline',
+        'home': '~/workspace/laravelApiKerf',
         'docker_build_commands': [],
         'docker_clean_commands': [],
         'git': {
@@ -32,6 +32,7 @@ environments = {
         'hosts': 'enrikerf@2.tcp.ngrok.io',
         'port': '12376',
         'home': '~/workspace/laravelApiKerf',
+        'app': '~/workspace/laravelApiKerf/app',
         'docker_build_commands': [],
         'docker_clean_commands': [],
         'git': {
@@ -68,6 +69,12 @@ def git_pull(sha1):
         run('git pull %s %s' % (environments['default']['git']['parent'],
                                 environments['default']['git']['branch']))
 
+def app_commands():
+    with cd(environments['default']['app']):
+        #run(f'./scripts/preDeployScript') # echo to environment an maintenance scripts
+        run(f'composer install')
+        #run(f'p do:mi:mi')
+        #run(f'./scripts/postDeployScript') # echo to environment an maintenance scripts
 
 def docker_commands():
     with cd(environments['default']['home']):
@@ -84,4 +91,5 @@ def deploy():
     print("SHA Commit", os.environ.get('CI_COMMIT_SHA'))
     print("SHA Commit", os.environ.get('CI_COMMIT_SHA'))
     git_pull(sha1)
+    app_commands()
     docker_commands()
