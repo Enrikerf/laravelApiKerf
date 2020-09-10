@@ -8,8 +8,7 @@ before_script:
   - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
   # run ssh-agent
   - eval $(ssh-agent -s)
-  # add ssh key stored in SSH_PRIVATE_KEY variable to the agent store
-  - echo "${LOCAL_SSH_PRIVATE_KEY}"
+  # add ssh key stored in SSH_PRIVATE_KEY variable to the agent stores
   - echo "${LOCAL_SSH_PRIVATE_KEY}" | ssh-add -
   # disable host key checking (NOTE: makes you susceptible to man-in-the-middle attacks)
   # WARNING: use only in docker container, if you use it with shell you will overwrite your user's ssh config
@@ -34,9 +33,13 @@ pytest:
 
 deploy_stage:
   stage: deploy_stage
+  dependencies:
+    - pytest
+    - flake8
   script:
-    - echo "develop deploy not implemented"
-    - ls -la
+    - cd cool_app
+    - pip3 install Fabric3==1.13.1.post1
+    - fab local deploy
   only:
     - develop
 

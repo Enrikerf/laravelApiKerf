@@ -30,8 +30,8 @@ environments = {
     },
     'local': {
         'hosts': 'enrikerf@2.tcp.ngrok.io',
-        'port': '15050',
-        'home': '~/workspace/clase_6_pipeline',
+        'port': '12376',
+        'home': '~/workspace/laravelApiKerf',
         'docker_build_commands': [],
         'docker_clean_commands': [],
         'git': {
@@ -52,7 +52,13 @@ def production():
 def stage():
     environments['default'] = environments['stage']
     env.hosts = environments['stage']['hosts']
-    env.port = environments['production']['port']
+    env.port = environments['stage']['port']
+
+
+def local():
+    environments['default'] = environments['local']
+    env.hosts = environments['local']['hosts']
+    env.port = environments['local']['port']
 
 
 def git_pull(sha1):
@@ -76,5 +82,6 @@ def deploy():
     sha1 = os.environ.get('CI_COMMIT_SHA')
     print("SHA Commit", os.environ.get('CI_COMMIT_SHA'))
     print("SHA Commit", os.environ.get('CI_COMMIT_SHA'))
+    ls -la
     git_pull(sha1)
     docker_commands()
