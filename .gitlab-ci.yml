@@ -41,7 +41,7 @@ deploy_stage:
     - format
   script:
     - pip3 install Fabric3==1.13.1.post1
-    - fab develop deploy
+    - fab stage deploy
   only:
     - develop
 
