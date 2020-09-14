@@ -19,17 +19,16 @@ before_script:
   - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
 
 stages:
-  - format
   - tests
   - deploy_stage
   - deploy
 
 format:
-  stage: format
+  stage: tests
   script:
     - echo "static_analysis not implemented"
 
-tests:
+phpunit:
   stage: tests
   script:
     - echo "unit test not implemented"
@@ -38,7 +37,6 @@ deploy_stage:
   stage: deploy_stage
   dependencies:
     - tests
-    - format
   script:
     - pip3 install Fabric3==1.13.1.post1
     - fab stage deploy
@@ -47,6 +45,8 @@ deploy_stage:
 
 deploy:
   stage: deploy
+  dependencies:
+    - deploy_stage
   script:
     - echo "master deploy not implemented"
     - ls -la

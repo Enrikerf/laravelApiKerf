@@ -7,8 +7,8 @@ from fabric.api import warn_only
 
 environments = {
     'production': {
-        'hosts': 'enrikerf@2.tcp.ngrok.io',
-        'port': '15050',
+        'hosts': 'enrikerf@0.tcp.ngrok.io',
+        'port': '18923',
         'home': '~/workspace/laravelApiKerf',
         'docker_build_commands': [],
         'docker_clean_commands': [],
@@ -18,7 +18,7 @@ environments = {
         }
     },
     'stage': {
-        'hosts': 'ec2-3-12-123-16.us-east-2.compute.amazonaws.com',
+        'hosts': 'ec2-3-133-109-29.us-east-2.compute.amazonaws.com',
         'port': '22',
         'user':'ubuntu',
         'connect_kwargs':{
@@ -33,8 +33,8 @@ environments = {
         }
     },
     'local': {
-        'hosts': 'enrikerf@2.tcp.ngrok.io',
-        'port': '12376',
+        'hosts': 'enrikerf@0.tcp.ngrok.io',
+        'port': '18923',
         'home': '~/workspace/laravelApiKerf',
         'app': '~/workspace/laravelApiKerf/app',
         'docker_build_commands': [],
