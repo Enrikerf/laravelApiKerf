@@ -20,7 +20,7 @@ before_script:
 
 stages:
   - tests
-  - deploy_stage
+  - staging
   - deploy
 
 format:
@@ -33,10 +33,11 @@ phpunit:
   script:
     - echo "unit test not implemented"
 
-deploy_stage:
-  stage: deploy_stage
+beta:
+  stage: staging
   dependencies:
-    - tests
+    - format
+    - phpunit
   script:
     - pip3 install Fabric3==1.13.1.post1
     - fab stage deploy
@@ -46,7 +47,7 @@ deploy_stage:
 deploy:
   stage: deploy
   dependencies:
-    - deploy_stage
+    - beta
   script:
     - echo "master deploy not implemented"
     - ls -la
