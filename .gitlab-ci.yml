@@ -5,14 +5,12 @@ stages:
 
 format:
   stage: tests
-  image: circleci/php:7.4
+  image: composer:latest
   script:
-    - ls -la
     - DIR=$(pwd)
     - composer global require "squizlabs/php_codesniffer=*"
     - cd $(composer global config bin-dir --absolute)
-    - ls -la
-    - ./phpcs -v --extensions=php --standard=PSR2 $DIR/app
+    - ./phpcs -v --extensions=php --standard=PSR2 $DIR/app/src
 
 phpunit:
   stage: tests
