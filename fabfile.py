@@ -23,6 +23,7 @@ environments = {
         'hosts': 'ec2-3-129-42-115.us-east-2.compute.amazonaws.com',
         'port': '22',
         'user':'ubuntu',
+        'pemFile':'~/.ssh/kerf-1.pem',
         'home': '/home/ubuntu/laravelApiKerf',
         'app': '/home/ubuntu/laravelApiKerf/app',
         'docker_build_commands': [],
@@ -51,12 +52,14 @@ environments = {
 def production():
     environments['default'] = environments['production']
     env.hosts = environments['production']['hosts']
+    env.user = environments['production']['user']
     env.port = environments['production']['port']
 
 
 def stage():
     environments['default'] = environments['stage']
     env.hosts = environments['stage']['hosts']
+    env.user = environments['stage']['user']
     env.port = environments['stage']['port']
 
 
