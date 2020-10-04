@@ -1,6 +1,6 @@
 before_script:
   - mkdir -p ~/.ssh
-  - 'which ssh-agent || ( apk add --update --no-cache && apk add --update --no-cache openssh-client -y )'
+  - 'which ssh-agent || ( apk add --update --no-cache openssh-client -y )'
   - eval $(ssh-agent -s)
   - echo "${LOCAL_SSH_PRIVATE_KEY}" | ssh-add -
   - echo "${SSH_PRIVATE_KEY}" | ssh-add -
