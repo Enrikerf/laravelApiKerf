@@ -8,7 +8,7 @@ format:
   image: circleci/php:7.4
   script:
     - cd app
-    - sudo pear install PHP_CodeSniffer
+    - composer global config bin-dir --absolute
     - phpcs -v --extensions=php --standard=PSR2 /src
 
 phpunit:
