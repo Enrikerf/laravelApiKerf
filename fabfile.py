@@ -7,7 +7,7 @@ from fabric.api import warn_only
 
 environments = {
     'production': {
- 'hosts': 'ec2-3-129-42-115.us-east-2.compute.amazonaws.com',
+        'hosts': 'ec2-3-129-42-115.us-east-2.compute.amazonaws.com',
         'port': '22',
         'user':'ubuntu',
         'home': '/home/ubuntu/prod-laravelApiKerf',
@@ -23,7 +23,6 @@ environments = {
         'hosts': 'ec2-3-129-42-115.us-east-2.compute.amazonaws.com',
         'port': '22',
         'user':'ubuntu',
-        'pemFile':'~/.ssh/kerf-1.pem',
         'home': '/home/ubuntu/laravelApiKerf',
         'app': '/home/ubuntu/laravelApiKerf/app',
         'docker_build_commands': [],
@@ -68,6 +67,13 @@ def local():
     env.hosts = environments['local']['hosts']
     env.port = environments['local']['port']
 
+def deploy():
+    sha1 = os.environ.get('CI_COMMIT_SHA')
+    print("SHA Commit", os.environ.get('CI_COMMIT_SHA'))
+    print("SHA Commit", os.environ.get('CI_COMMIT_SHA'))
+    git_pull(sha1)
+    app_commands()
+    docker_commands()
 
 def git_pull(sha1):
     with cd(environments['default']['home']):
@@ -93,10 +99,4 @@ def docker_commands():
                 run(command)
 
 
-def deploy():
-    sha1 = os.environ.get('CI_COMMIT_SHA')
-    print("SHA Commit", os.environ.get('CI_COMMIT_SHA'))
-    print("SHA Commit", os.environ.get('CI_COMMIT_SHA'))
-    git_pull(sha1)
-    app_commands()
-    docker_commands()
+
