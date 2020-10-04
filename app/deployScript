@@ -1,4 +1,5 @@
 #!/bin/bash
+
 echo "APP_VAR=dev" > .env
 composer install
 php bin/console do:mi:mi
