@@ -9,13 +9,16 @@ format:
   script:
     - cd app
     - sudo pear install PHP_CodeSniffer
-    - cd app/reports && phpcs -v --extensions=php --standard=PSR2 src/Framework/Controller/ClassPhpCS.php
+    - phpcs -v --extensions=php --standard=PSR2 src/Framework/Controller/ClassPhpCS.php
 
 phpunit:
   stage: tests
   image: circleci/php:7.4
   script:
-    - echo "unit test not implemented"
+    - cd app
+    - curl --location --output /usr/local/bin/phpunit https://phar.phpunit.de/phpunit.phar
+    - chmod +x /usr/local/bin/phpunit
+    - phpunit --configuration phpunit_myapp.xml
 
 beta:
   stage: staging
