@@ -7,7 +7,7 @@ from fabric.api import warn_only
 
 environments = {
     'production': {
-        'hosts': 'ec2-3-129-42-115.us-east-2.compute.amazonaws.com',
+        'hosts': 'ec2-18-188-198-187.us-east-2.compute.amazonaws.com',
         'port': '22',
         'user':'ubuntu',
         'home': '/home/ubuntu/prod-laravelApiKerf',
@@ -20,7 +20,7 @@ environments = {
         }
     },
     'stage': {
-        'hosts': 'ec2-3-129-42-115.us-east-2.compute.amazonaws.com',
+        'hosts': 'ec2-18-188-198-187.us-east-2.compute.amazonaws.com',
         'port': '22',
         'user':'ubuntu',
         'home': '/home/ubuntu/laravelApiKerf',
@@ -84,10 +84,8 @@ def git_pull(sha1):
 
 def app_commands():
     with cd(environments['default']['app']):
-        #run(f'./scripts/preDeployScript') # echo to environment an maintenance scripts
-        run(f'composer install')
-        #run(f'p do:mi:mi')
-        #run(f'./scripts/postDeployScript') # echo to environment an maintenance scripts
+        run(f'./scripts/preDeployScript') # echo to environment an maintenance scripts
+        run(f'./scripts/postDeployScript') # echo to environment an maintenance scripts
 
 def docker_commands():
     with cd(environments['default']['home']):
