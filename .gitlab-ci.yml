@@ -1,6 +1,6 @@
 before_script:
   - mkdir -p ~/.ssh
-  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  - 'which ssh-agent || ( apk add --update --no-cache && apk add --update --no-cache openssh-client -y )'
   - eval $(ssh-agent -s)
   - echo "${LOCAL_SSH_PRIVATE_KEY}" | ssh-add -
   - echo "${SSH_PRIVATE_KEY}" | ssh-add -
@@ -19,8 +19,12 @@ format:
   stage: tests
   image: php:7.4-fpm-alpine
   script:
-    - docker pull overtrue/phplint:latest
-    - /root/.composer/vendor/bin/phplint ./ --exclude=vendor
+    - apk add --update --no-cache zip unzip
+    - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+    - php composer-setup.php
+    - php -r "unlink('composer-setup.php');"
+    - composer require overtrue/phplint --dev -vvv
+    - ./vendor/bin/phplint ./ --exclude=vendor
 
 phpunit:
   stage: tests
