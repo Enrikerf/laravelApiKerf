@@ -9,18 +9,19 @@ format:
   script:
     - DIR=$(pwd)
     - composer global require "squizlabs/php_codesniffer=*"
+    - composer global require "overtrue/phplint=*"
     - cd $(composer global config bin-dir --absolute)
     - ./phpcs -v --extensions=php --standard=PSR2 $DIR/app/src
+    - ./phplint  $DIR/app/src --exclude=vendor
 
 phpunit:
   stage: tests
   image: composer:latest
-  script:
+  script: #check if it is necessary full composer install o make it global
     - touch app/.env
     - echo "APP_ENV=$APP_ENV" >> app/.env
     - echo "APP_SECRET=$APP_SECRET" >> app/.env
     - composer install -d app
-    - ./app/vendor/bin/phplint ./app --exclude=vendor
     - ./app/vendor/bin/phpunit app/tests --testdox
 
 beta:
