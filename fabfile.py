@@ -7,7 +7,7 @@ from fabric.api import warn_only
 
 environments = {
     'production': {
-        'hosts': 'ec2-3-133-159-52.us-east-2.compute.amazonaws.com',
+        'hosts': '-',
         'port': '22',
         'user':'ubuntu',
         'home': '/home/ubuntu/prod-laravelApiKerf',
@@ -20,7 +20,7 @@ environments = {
         }
     },
     'stage': {
-        'hosts': 'ec2-3-133-159-52.us-east-2.compute.amazonaws.com',
+        'hosts': 'ec2-3-137-161-1.us-east-2.compute.amazonaws.com',
         'port': '22',
         'user':'ubuntu',
         'home': '/home/ubuntu/laravelApiKerf',
