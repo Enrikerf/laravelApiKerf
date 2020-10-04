@@ -24,7 +24,8 @@ environments = {
         'connect_kwargs':{
             'key_filename': '~/.ssh/kerf-1.pem',
         },
-        'home': '~/home/ubuntu',
+        'home': '/home/ubuntu',
+        'app': '/home/ubuntu/laravelApiKerf/app',
         'docker_build_commands': [],
         'docker_clean_commands': [],
         'git': {
