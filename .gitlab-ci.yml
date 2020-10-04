@@ -8,19 +8,17 @@ format:
   image: circleci/php:7.4
   script:
     - ls -la
-    - pwd
+    - DIR=$(pwd)
     - composer global require "squizlabs/php_codesniffer=*"
     - cd $(composer global config bin-dir --absolute)
+    - cd vendor/bin
     - phpcs -v --extensions=php --standard=PSR2 ~/app/src
 
 phpunit:
   stage: tests
   image: circleci/php:7.4
   script:
-    - cd app
-    - curl --location --output /usr/local/bin/phpunit https://phar.phpunit.de/phpunit.phar
-    - chmod +x /usr/local/bin/phpunit
-    - phpunit --configuration phpunit_myapp.xml
+    - echo "not implemented"
 
 beta:
   stage: staging
