@@ -11,8 +11,9 @@ format:
     - DIR=$(pwd)
     - composer global require "squizlabs/php_codesniffer=*"
     - cd $(composer global config bin-dir --absolute)
+    - ls -la
     - cd vendor/bin
-    - phpcs -v --extensions=php --standard=PSR2 ~/app/src
+    - phpcs -v --extensions=php --standard=PSR2 $DIR/app
 
 phpunit:
   stage: tests
