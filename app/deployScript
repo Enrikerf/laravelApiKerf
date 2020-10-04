@@ -3,5 +3,4 @@
 echo "APP_VAR=dev" >> .env
 echo "APP_SECRET=$APP_SECRET" >> .env
 composer install
-php bin/console do:mi:mi
 
