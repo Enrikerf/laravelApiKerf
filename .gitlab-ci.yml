@@ -12,7 +12,7 @@ format:
     - composer global require "squizlabs/php_codesniffer=*"
     - cd $(composer global config bin-dir --absolute)
     - ls -la
-    - phpcs -v --extensions=php --standard=PSR2 $DIR/app
+    - ./phpcs -v --extensions=php --standard=PSR2 $DIR/app
 
 phpunit:
   stage: tests
