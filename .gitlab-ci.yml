@@ -9,7 +9,7 @@ format:
   script:
     - cd app
     - composer global config bin-dir --absolute
-    - phpcs -v --extensions=php --standard=PSR2 /src
+    - /home/circleci/.composer/vendor/bin/phpcs -v --extensions=php --standard=PSR2 /src
 
 phpunit:
   stage: tests
