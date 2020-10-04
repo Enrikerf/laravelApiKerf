@@ -18,7 +18,7 @@ environments = {
         }
     },
     'stage': {
-        'hosts': 'ec2-3-133-109-29.us-east-2.compute.amazonaws.com',
+        'hosts': 'ec2-3-129-42-115.us-east-2.compute.amazonaws.com',
         'port': '22',
         'user':'ubuntu',
         'connect_kwargs':{
