@@ -9,7 +9,7 @@ format:
   script:
     - cd app
     - sudo pear install PHP_CodeSniffer
-    - phpcs -v --extensions=php --standard=PSR2 src/Framework/Controller/ClassPhpCS.php
+    - phpcs -v --extensions=php --standard=PSR2 /src
 
 phpunit:
   stage: tests
