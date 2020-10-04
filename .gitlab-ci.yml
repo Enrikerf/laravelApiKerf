@@ -4,13 +4,13 @@ services:
   - redis:latest
 
 before_script:
+  - mkdir -p ~/.ssh
   - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
   - eval $(ssh-agent -s)
   - echo "${LOCAL_SSH_PRIVATE_KEY}" | ssh-add -
   - echo "${SSH_PRIVATE_KEY}" | ssh-add -
   - touch  ~/.ssh/kerf-1.pem
   - echo "${SSH_PRIVATE_KEY}" > ~/.ssh/kerf-1.pem
-  - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
   - ssh-keyscan gitlab.com >> ~/.ssh/known_hosts
   - chmod 644 ~/.ssh/known_hosts
