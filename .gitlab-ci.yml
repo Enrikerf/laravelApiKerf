@@ -1,6 +1,6 @@
 before_script:
   - mkdir -p ~/.ssh
-  - 'which ssh-agent || ( apk add --update --no-cache openssh-client -y )'
+  - 'which ssh-agent || ( apk add --update --no-cache openssh-client)'
   - eval $(ssh-agent -s)
   - echo "${LOCAL_SSH_PRIVATE_KEY}" | ssh-add -
   - echo "${SSH_PRIVATE_KEY}" | ssh-add -
@@ -28,7 +28,7 @@ format:
 
 phpunit:
   stage: tests
-  image: python:3.7
+  image: python:3.7-alpine
   script:
     - echo "unit test not implemented"
 
