@@ -21,9 +21,9 @@ format:
   script:
     - apk add --update --no-cache zip unzip
     - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-    - php composer-setup.php
-    - php -r "unlink('composer-setup.php');"
-    - php composer.phar install
+    - php composer-setup.php --install-dir=/usr/bin --filename=composer
+    - rm composer-setup.php
+    - cd app
     - composer require overtrue/phplint --dev -vvv
     - ./vendor/bin/phplint ./ --exclude=vendor
 
