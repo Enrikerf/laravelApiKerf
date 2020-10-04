@@ -1,15 +1,3 @@
-before_script:
-  - mkdir -p ~/.ssh
-  - 'which ssh-agent || ( apk add --update --no-cache openssh-client)'
-  - eval $(ssh-agent -s)
-  - echo "${LOCAL_SSH_PRIVATE_KEY}" | ssh-add -
-  - echo "${SSH_PRIVATE_KEY}" | ssh-add -
-  - touch  ~/.ssh/kerf-1.pem
-  - echo "${SSH_PRIVATE_KEY}" > ~/.ssh/kerf-1.pem
-  - chmod 700 ~/.ssh
-  - ssh-keyscan gitlab.com >> ~/.ssh/known_hosts
-  - chmod 644 ~/.ssh/known_hosts
-
 stages:
   - tests
   - staging
@@ -17,19 +5,15 @@ stages:
 
 format:
   stage: tests
-  image: php:7.4-fpm-alpine
+  image: circleci/php:7.4
   script:
-    - apk add --update --no-cache zip unzip
-    - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-    - php composer-setup.php --install-dir=/usr/bin --filename=composer
-    - rm composer-setup.php
     - cd app
-    - composer require overtrue/phplint --dev -vvv
-    - ./vendor/bin/phplint ./ --exclude=vendor
+    - sudo pear install PHP_CodeSniffer
+    - cd app/reports && phpcs -v --extensions=php --standard=PSR2 src/Framework/Controller/ClassPhpCS.php
 
 phpunit:
   stage: tests
-  image: python:3.7-alpine
+  image: circleci/php:7.4
   script:
     - echo "unit test not implemented"
 
@@ -40,6 +24,16 @@ beta:
     - format
     - phpunit
   script:
+    - mkdir -p ~/.ssh
+    - 'which ssh-agent || ( apt update && apt install openssh-client )'
+    - eval $(ssh-agent -s)
+    - echo "${LOCAL_SSH_PRIVATE_KEY}" | ssh-add -
+    - echo "${SSH_PRIVATE_KEY}" | ssh-add -
+    - touch  ~/.ssh/kerf-1.pem
+    - echo "${SSH_PRIVATE_KEY}" > ~/.ssh/kerf-1.pem
+    - chmod 700 ~/.ssh
+    - ssh-keyscan gitlab.com >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
     - pip3 install Fabric3==1.13.1.post1
     - fab stage deploy
   only:
