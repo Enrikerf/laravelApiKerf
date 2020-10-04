@@ -84,8 +84,8 @@ def git_pull(sha1):
 
 def app_commands():
     with cd(environments['default']['app']):
-        run(f'./scripts/preDeployScript') # echo to environment an maintenance scripts
-        run(f'./scripts/postDeployScript') # echo to environment an maintenance scripts
+        run(f'.preDeployScript') # echo to environment an maintenance scripts
+        run(f'.postDeployScript') # echo to environment an maintenance scripts
 
 def docker_commands():
     with cd(environments['default']['home']):
