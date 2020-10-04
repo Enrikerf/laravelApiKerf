@@ -17,8 +17,8 @@ phpunit:
   image: composer:latest
   script:
     - touch app/.env
-    - echo $APP_ENV > app/.env
-    - echo $APP_SECRET > app/.env
+    - echo "APP_ENV=$APP_ENV" >> app/.env
+    - echo "APP_SECRET=$APP_SECRET" >> app/.env
     - composer install -d app
     - ./app/vendor/bin/phplint ./app --exclude=vendor
     - ./app/vendor/bin/phpunit tests --testdox
