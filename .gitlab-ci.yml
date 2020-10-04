@@ -14,9 +14,13 @@ format:
 
 phpunit:
   stage: tests
-  image: circleci/php:7.4
+  image: composer:latest
   script:
-    - echo "not implemented"
+    - touch app/.env
+    - echo $APP_ENV > app/.env
+    - echo $APP_SECRET > app/.env
+    - composer install
+    - ./app/vendor/bin/phplint ./app --exclude=vendor
 
 beta:
   stage: staging
