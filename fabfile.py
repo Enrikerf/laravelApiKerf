@@ -7,9 +7,11 @@ from fabric.api import warn_only
 
 environments = {
     'production': {
-        'hosts': 'enrikerf@0.tcp.ngrok.io',
-        'port': '18923',
-        'home': '~/workspace/laravelApiKerf',
+ 'hosts': 'ec2-3-129-42-115.us-east-2.compute.amazonaws.com',
+        'port': '22',
+        'user':'ubuntu',
+        'home': '/home/ubuntu/prod-laravelApiKerf',
+        'app': '/home/ubuntu/prod-laravelApiKerf/app',
         'docker_build_commands': [],
         'docker_clean_commands': [],
         'git': {
@@ -21,10 +23,7 @@ environments = {
         'hosts': 'ec2-3-129-42-115.us-east-2.compute.amazonaws.com',
         'port': '22',
         'user':'ubuntu',
-        'connect_kwargs':{
-            'key_filename': '~/.ssh/kerf-1.pem',
-        },
-        'home': '/home/ubuntu',
+        'home': '/home/ubuntu/laravelApiKerf',
         'app': '/home/ubuntu/laravelApiKerf/app',
         'docker_build_commands': [],
         'docker_clean_commands': [],
