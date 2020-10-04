@@ -13,3 +13,9 @@ composer.lock
 .phplint-cache
 .php_cs.cache
 .idea
+###> phpunit/phpunit ###
+.phpunit
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
+

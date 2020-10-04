@@ -21,7 +21,7 @@ phpunit:
     - echo "APP_SECRET=$APP_SECRET" >> app/.env
     - composer install -d app
     - ./app/vendor/bin/phplint ./app --exclude=vendor
-    - ./app/vendor/bin/phpunit tests --testdox
+    - ./app/vendor/bin/phpunit app/tests --testdox
 
 beta:
   stage: staging
