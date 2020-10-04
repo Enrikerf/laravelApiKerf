@@ -19,8 +19,9 @@ phpunit:
     - touch app/.env
     - echo $APP_ENV > app/.env
     - echo $APP_SECRET > app/.env
-    - composer install
+    - composer install -d app
     - ./app/vendor/bin/phplint ./app --exclude=vendor
+    - ./app/vendor/bin/phpunit tests --testdox
 
 beta:
   stage: staging
