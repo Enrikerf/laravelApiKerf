@@ -23,7 +23,8 @@ stages:
 format:
   stage: tests
   script:
-    - echo "static_analysis not implemented"
+    - docker pull overtrue/phplint:latest
+    - /root/.composer/vendor/bin/phplint ./ --exclude=vendor
 
 phpunit:
   stage: tests

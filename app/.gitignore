@@ -9,3 +9,7 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+composer.lock
+.phplint-cache
+.php_cs.cache
+.idea
