@@ -10,6 +10,9 @@ services:
       - 9009:9009
     volumes:
       - ./app:/var/www/app
+    environment:
+      - PUBLIC_FOLDER: /var/www/app
+      - APP_ENV: dev
   php-fpm:
     image: enrikerf/php-fpm-xdebug:latest
     depends_on:
@@ -25,8 +28,6 @@ services:
     environment:
       MYSQL_DATABASE: $MYSQL_DATABASE
       MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
-      MYSQL_USER: $MYSQL_USER
-      MYSQL_PASSWORD: $MYSQL_PASSWORD
     command:
       [
         "mysqld",
